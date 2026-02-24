@@ -179,7 +179,11 @@ function displayAll(data) {
   });
 }
 
-function displayResults(data, type) {
+let currentPage = 1;
+const pageSize = 20; // 1ページあたり件数
+let currentData = []; // フィルタ結果を保持
+
+function displayResults(data, type, page = 1) {
   const resultDiv = document.getElementById("result");
   resultDiv.innerHTML = "";
 
@@ -188,25 +192,21 @@ function displayResults(data, type) {
     return;
   }
 
+  currentData = data;      // 現在の結果を保持
+  currentPage = page;      // 現在ページ
+
+  const start = (page - 1) * pageSize;
+  const end = Math.min(start + pageSize, data.length);
+  const pageData = data.slice(start, end);
+
   const table = document.createElement("table");
   table.border = "1";
 
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
 
-  // ヘッダ定義
-  const headers2 = [
-    "ベース術", "追加術", "合成結果",
-    "BP補正", "威力補正",
-    "追加効果", "種族特攻"
-  ];
-
-  const headers3 = [
-    "ベース術", "追加術1", "追加術2",
-    "合成結果", "BP補正", "威力補正",
-    "追加効果", "種族特攻"
-  ];
-
+  const headers2 = ["ベース術", "追加術", "合成結果","BP補正","威力補正","追加効果","種族特攻"];
+  const headers3 = ["ベース術", "追加術1","追加術2","合成結果","BP補正","威力補正","追加効果","種族特攻"];
   const headers = (type === 2) ? headers2 : headers3;
 
   headers.forEach(text => {
@@ -220,29 +220,50 @@ function displayResults(data, type) {
 
   const tbody = document.createElement("tbody");
 
-  data.forEach(item => {
+  pageData.forEach(item => {
     const tr = document.createElement("tr");
-
     if (type === 2) {
-      appendCell(tr, item.ベース術);
-      appendCell(tr, item.追加術);
+      appendCell(tr, item.base);
+      appendCell(tr, item.add);
     } else {
-      appendCell(tr, item.ベース術);
-      appendCell(tr, item.追加術1);
-      appendCell(tr, item.追加術2);
+      appendCell(tr, item.base);
+      appendCell(tr, item.add1);
+      appendCell(tr, item.add2);
     }
-
-    appendCell(tr, item.合成結果);
-    appendCell(tr, item.BP補正);
-    appendCell(tr, item.威力補正);
-    appendCell(tr, item.追加効果);
-    appendCell(tr, item.種族特攻);
-
+    appendCell(tr, item.result);
+    appendCell(tr, item.bp);
+    appendCell(tr, item.power);
+    appendCell(tr, item.effect);
+    appendCell(tr, item.species);
     tbody.appendChild(tr);
   });
 
   table.appendChild(tbody);
   resultDiv.appendChild(table);
+
+  // ページング操作UI
+  const pager = document.createElement("div");
+  pager.style.marginTop = "10px";
+
+  const totalPages = Math.ceil(data.length / pageSize);
+
+  if (page > 1) {
+    const prevBtn = document.createElement("button");
+    prevBtn.textContent = "前のページ";
+    prevBtn.addEventListener("click", () => displayResults(currentData, type, page - 1));
+    pager.appendChild(prevBtn);
+  }
+
+  pager.appendChild(document.createTextNode(`  ${page} / ${totalPages}  `));
+
+  if (page < totalPages) {
+    const nextBtn = document.createElement("button");
+    nextBtn.textContent = "次のページ";
+    nextBtn.addEventListener("click", () => displayResults(currentData, type, page + 1));
+    pager.appendChild(nextBtn);
+  }
+
+  resultDiv.appendChild(pager);
 }
 
 function appendCell(tr, value) {
