@@ -9,6 +9,98 @@
 <h1>*開発中*データ一覧</h1>
 <div id="status2"></div>
 <div id="status3"></div>
+<div class="search-block">
+
+  <label>合成結果:</label>
+  <select id="mixspellSelect">
+    <option value="">指定しない</option>
+    <option value="ヘルファイア">ヘルファイア</option>
+    <option value="生命の炎">生命の炎</option>
+    <option value="セルフバーニング">セルフバーニング</option>
+    <option value="エレメンタル（火）">エレメンタル（火）</option>
+    <option value="火の鳥">火の鳥</option>
+    <option value="リヴァイヴァ">リヴァイヴァ</option>
+    <option value="癒しの水">癒しの水</option>
+    <option value="ウォーターガン">ウォーターガン</option>
+    <option value="浄化の水">浄化の水</option>
+    <option value="エレメンタル（水）">エレメンタル（水）</option>
+    <option value="タイムディシーバー">タイムディシーバー</option>
+    <option value="時間凍結">時間凍結</option>
+    <option value="ウインドカッター">ウインドカッター</option>
+    <option value="弓力倍増">弓力倍増</option>
+    <option value="ブラッドフリーズ">ブラッドフリーズ</option>
+    <option value="エレメンタル（風）">エレメンタル（風）</option>
+    <option value="ミサイルガード">ミサイルガード</option>
+    <option value="吹雪">吹雪</option>
+    <option value="ロッククラッシュ">ロッククラッシュ</option>
+    <option value="カモフラージュ">カモフラージュ</option>
+    <option value="アースハンド">アースハンド</option>
+    <option value="エレメンタル（土）">エレメンタル（土）</option>
+    <option value="クラック">クラック</option>
+    <option value="イージスの盾">イージスの盾</option>
+    <option value="火幻術">火幻術</option>
+    <option value="氷幻術">氷幻術</option>
+    <option value="雷幻術">雷幻術</option>
+    <option value="破幻術">破幻術</option>
+    <option value="睡夢術">睡夢術</option>
+    <option value="幻体戦士術">幻体戦士術</option>
+    <option value="エナジーボルト">エナジーボルト</option>
+    <option value="ウェポンブレス">ウェポンブレス</option>
+    <option value="アーマーブレス">アーマーブレス</option>
+    <option value="スペルエンハンス">スペルエンハンス</option>
+    <option value="ショックウェイブ">ショックウェイブ</option>
+    <option value="サイコブラスト">サイコブラスト</option>
+    <option value="サンライトアロー">サンライトアロー</option>
+    <option value="ムーンライトヒール">ムーンライトヒール</option>
+    <option value="スターライトビット">スターライトビット</option>
+    <option value="アースライトバインド">アースライトバインド</option>
+    <option value="スターライトFS">スターライトFS</option>
+    <option value="コズミックタイド">コズミックタイド</option>
+    <option value="シャドウボルト">シャドウボルト</option>
+    <option value="ブラッククラウド">ブラッククラウド</option>
+    <option value="ダークスフィア">ダークスフィア</option>
+    <option value="アビス">アビス</option>
+    <option value="ダークライトウェブ">ダークライトウェブ</option>
+    <option value="ブラックアイス">ブラックアイス</option>
+    <option value="防御法">防御法</option>
+    <option value="精神法">精神法</option>
+    <option value="腕力法">腕力法</option>
+    <option value="生命波動">生命波動</option>
+    <option value="集気法">集気法</option>
+    <option value="覚醒印">覚醒印</option>
+    <option value="ペイン">ペイン</option>
+    <option value="ウィークネス">ウィークネス</option>
+    <option value="イーヴルウィスパー">イーヴルウィスパー</option>
+    <option value="エナジースティール">エナジースティール</option>
+    <option value="カース">カース</option>
+    <option value="魂の歌">魂の歌</option>
+    <option value="クリムゾンフレア">クリムゾンフレア</option>
+    <option value="オーヴァドライブ">オーヴァドライブ</option>
+    <option value="クイックタイム">クイックタイム</option>
+    <option value="ホワイトアウト">ホワイトアウト</option>
+    <option value="シムラクラム">シムラクラム</option>
+    <option value="ウォールブレイカー">ウォールブレイカー</option>
+    <option value="デルタ・ペトラ">デルタ・ペトラ</option>
+    <option value="幻霧結界">幻霧結界</option>
+    <option value="幻日">幻日</option>
+    <option value="シールドブレイカー">シールドブレイカー</option>
+    <option value="アンチマジック">アンチマジック</option>
+    <option value="ギャラクシィ">ギャラクシィ</option>
+    <option value="アンドロメダ">アンドロメダ</option>
+    <option value="ダークネビュラ">ダークネビュラ</option>
+    <option value="ヴォーテクス">ヴォーテクス</option>
+    <option value="精神障壁">精神障壁</option>
+    <option value="生命の雨">生命の雨</option>
+    <option value="ライフスティール">ライフスティール</option>
+    <option value="デスレイン">デスレイン</option>
+  </select>
+
+  <label>BP最小値:</label>
+  <input type="number" id="bpMinInput">
+
+  <button id="setConditionBtn">2術合成検索</button>
+  <button id="setConditionBtn">3術合成検索</button>
+</div>
 <div id="result"></div>
 
 <script src="script.js"></script>
