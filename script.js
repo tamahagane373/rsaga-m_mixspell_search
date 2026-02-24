@@ -275,24 +275,21 @@ function appendCell(tr, value) {
 // 二術検索
 document.getElementById("setConditionBtn2")
   .addEventListener("click", () => {
-
     const filtered = filterData(data2, 2);
 
-    document.getElementById("result").innerHTML =
+    document.getElementById("condition").innerHTML =
       buildConditionText(2) +
       "<hr>検索結果件数: " + filtered.length + "<br><br>";
 
     displayResults(filtered, 2, 1);
   });
 
-
 // 三術検索
 document.getElementById("setConditionBtn3")
   .addEventListener("click", () => {
-
     const filtered = filterData(data3, 3);
 
-    document.getElementById("result").innerHTML =
+    document.getElementById("condition").innerHTML =
       buildConditionText(3) +
       "<hr>検索結果件数: " + filtered.length + "<br><br>";
 
