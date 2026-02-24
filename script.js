@@ -124,12 +124,15 @@ function filterData(data, type) {
     if (mixspell !== "" && item.合成結果 !== mixspell) {
       return false;
     }
+    //合成結果が合成術ならBP補正または威力補正を指定した検索の結果に表示しない
+    if (item.BP補正 === "-" || item.威力補正 === "-") {
+      if (bpmag !== "" || powmag !== "") return false;
+    } 
 
     // BP倍率
     if (bpmag !== "") {
       const value = Number(item.BP補正);
       const target = Number(bpmag);
-
       if (bpmagCond === "以上" && value < target) return false;
       if (bpmagCond === "以下" && value > target) return false;
     }
