@@ -179,6 +179,78 @@ function displayAll(data) {
   });
 }
 
+function displayResults(data, type) {
+  const resultDiv = document.getElementById("result");
+  resultDiv.innerHTML = "";
+
+  if (data.length === 0) {
+    resultDiv.textContent = "該当データなし";
+    return;
+  }
+
+  const table = document.createElement("table");
+  table.border = "1";
+
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+
+  // ヘッダ定義
+  const headers2 = [
+    "ベース術", "追加術", "合成結果",
+    "BP補正", "威力補正",
+    "追加効果", "種族特攻"
+  ];
+
+  const headers3 = [
+    "ベース術", "追加術1", "追加術2",
+    "合成結果", "BP補正", "威力補正",
+    "追加効果", "種族特攻"
+  ];
+
+  const headers = (type === 2) ? headers2 : headers3;
+
+  headers.forEach(text => {
+    const th = document.createElement("th");
+    th.textContent = text;
+    headerRow.appendChild(th);
+  });
+
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+
+  data.forEach(item => {
+    const tr = document.createElement("tr");
+
+    if (type === 2) {
+      appendCell(tr, item.ベース術);
+      appendCell(tr, item.追加術);
+    } else {
+      appendCell(tr, item.ベース術);
+      appendCell(tr, item.追加術1);
+      appendCell(tr, item.追加術2);
+    }
+
+    appendCell(tr, item.合成結果);
+    appendCell(tr, item.BP補正);
+    appendCell(tr, item.威力補正);
+    appendCell(tr, item.追加効果);
+    appendCell(tr, item.種族特攻);
+
+    tbody.appendChild(tr);
+  });
+
+  table.appendChild(tbody);
+  resultDiv.appendChild(table);
+}
+
+function appendCell(tr, value) {
+  const td = document.createElement("td");
+  td.textContent = value ?? "";
+  tr.appendChild(td);
+}
+
 // 二術検索
 document.getElementById("setConditionBtn2")
   .addEventListener("click", () => {
@@ -189,7 +261,7 @@ document.getElementById("setConditionBtn2")
       buildConditionText(2) +
       "<hr>検索結果件数: " + filtered.length + "<br><br>";
 
-    displayAll(filtered);
+    displayResults(filtered, 2);
   });
 
 
@@ -203,7 +275,7 @@ document.getElementById("setConditionBtn3")
       buildConditionText(3) +
       "<hr>検索結果件数: " + filtered.length + "<br><br>";
 
-    displayAll(filtered);
+    displayResults(filtered, 3);
   });
 
 
