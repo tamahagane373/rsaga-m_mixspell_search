@@ -3,7 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <title>あたしの術で片づけてやるわ</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;        /* テーブルを横幅いっぱいに */
+      table-layout: fixed; /* 列幅を固定して均等に */
+      word-wrap: break-word; /* 長い文字列も折り返す */
+    }
+
+    th, td {
+      border: 1px solid #333;
+      padding: 4px 8px;    /* セル内余白 */
+      text-align: center;  /* 数値も文字も中央揃え */
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    #result {
+      margin-top: 10px;
+      overflow-x: auto; /* 横スクロールを出す */
+    }
+
+    /* ページングボタン */
+    #result button {
+      margin: 0 4px;
+      padding: 2px 6px;
+    }
+  </style>
 </head>
+  
 <body>
 
 <h1>Romancing SaGa -Minstrel Song- Remastered（ミンサガリマスター）術合成検索</h1>
