@@ -27,6 +27,29 @@ fetch("data/三術合成.json")
       "三術合成.JSON読み込み失敗: " + error;
   });
 
+function expandEffect2(value) {
+  if (value === "AGI") {
+    return ["水AGI", "闇AGI"];
+  }
+  if (value === "COM") {
+    return ["光COM", "邪COM"];
+  }
+  if (value === "") {
+    return [];
+  }
+  return [value];
+}
+
+function expandSpecies(value) {
+  if (value === "水棲（無区別）") {
+    return ["水棲（水棲表記）", "水棲（魔族表記）"];
+  }
+  if (value === "") {
+    return [];
+  }
+  return [value];
+}
+
 // 条件表示用関数
 function buildConditionText(type) {
 
@@ -35,9 +58,9 @@ function buildConditionText(type) {
   const bpmagCond = document.getElementById("bpmagcondSelect").value;
   const powmag = document.getElementById("powmagSelect").value;
   const powmagCond = document.getElementById("powmagcondSelect").value;
-  const effect2 = document.getElementById("effect2Select").value;
+  const effect2Raw = document.getElementById("effect2Select").value;
   const effect3 = document.getElementById("effect3Select").value;
-  const species = document.getElementById("speciesSelect").value;
+  const speciesRaw = document.getElementById("speciesSelect").value;
 
   let conditions = [];
 
@@ -57,8 +80,9 @@ function buildConditionText(type) {
   }
 
   // 追加効果（二術）
-  if (type === 2 && effect2 !== "") {
-    conditions.push("追加効果 = " + effect2);
+  if (type === 2 && effect2Raw !== "") {
+    const expanded = expandEffect2(effect2Raw);
+    conditions.push("追加効果 = " + expanded.join(" または "));
   }
 
   // 追加効果（三術）
@@ -67,8 +91,9 @@ function buildConditionText(type) {
   }
 
   // 種族特攻
-  if (species !== "") {
-    conditions.push("種族特攻 = " + species);
+  if (speciesRaw !== "") {
+    const expandedSpecies = expandSpecies(speciesRaw);
+    conditions.push("種族特攻 = " + expandedSpecies.join(" または "));
   }
 
   if (conditions.length === 0) {
