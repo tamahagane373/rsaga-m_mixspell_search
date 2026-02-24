@@ -282,7 +282,7 @@ document.getElementById("setConditionBtn2")
       buildConditionText(2) +
       "<hr>検索結果件数: " + filtered.length + "<br><br>";
 
-    displayResults(filtered, 2);
+    displayResults(filtered, 2, 1);
   });
 
 
@@ -296,7 +296,7 @@ document.getElementById("setConditionBtn3")
       buildConditionText(3) +
       "<hr>検索結果件数: " + filtered.length + "<br><br>";
 
-    displayResults(filtered, 3);
+    displayResults(filtered, 3, 1);
   });
 
 
