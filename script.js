@@ -104,6 +104,69 @@ function buildConditionText(type) {
          + conditions.join("<br>");
 }
 
+function filterData(data, type) {
+
+  const mixspell = document.getElementById("mixspellSelect").value;
+  const bpmag = document.getElementById("bpmagSelect").value;
+  const bpmagCond = document.getElementById("bpmagcondSelect").value;
+  const powmag = document.getElementById("powmagSelect").value;
+  const powmagCond = document.getElementById("powmagcondSelect").value;
+  const effect2Raw = document.getElementById("effect2Select").value;
+  const effect3 = document.getElementById("effect3Select").value;
+  const speciesRaw = document.getElementById("speciesSelect").value;
+
+  const effect2List = expandEffect2(effect2Raw);
+  const speciesList = expandSpecies(speciesRaw);
+
+  return data.filter(item => {
+
+    // 合成結果
+    if (mixspell !== "" && item.合成結果 !== mixspell) {
+      return false;
+    }
+
+    // BP倍率
+    if (bpmag !== "") {
+      const value = Number(item.BP補正);
+      const target = Number(bpmag);
+
+      if (bpmagCond === "以上" && value < target) return false;
+      if (bpmagCond === "以下" && value > target) return false;
+    }
+
+    // 威力倍率
+    if (powmag !== "") {
+      const value = Number(item.威力補正);
+      const target = Number(powmag);
+
+      if (powmagCond === "以上" && value < target) return false;
+      if (powmagCond === "以下" && value > target) return false;
+    }
+
+    // 追加効果（二術）
+    if (type === 2 && effect2List.length > 0) {
+      if (!effect2List.includes(item.追加効果)) {
+        return false;
+      }
+    }
+
+    // 追加効果（三術）
+    if (type === 3 && effect3 !== "") {
+      if (item.追加効果 !== effect3) {
+        return false;
+      }
+    }
+
+    // 種族特攻
+    if (speciesList.length > 0) {
+      if (!speciesList.includes(item.種族特攻)) {
+        return false;
+      }
+    }
+
+    return true; // すべて通過 → AND成立
+  });
+}
 
 // 二術ボタン
 document.getElementById("setConditionBtn2")
