@@ -223,18 +223,18 @@ function displayResults(data, type, page = 1) {
   pageData.forEach(item => {
     const tr = document.createElement("tr");
     if (type === 2) {
-      appendCell(tr, item.base);
-      appendCell(tr, item.add);
+      appendCell(tr, item.ベース術);
+      appendCell(tr, item.追加術);
     } else {
-      appendCell(tr, item.base);
-      appendCell(tr, item.add1);
-      appendCell(tr, item.add2);
+      appendCell(tr, item.ベース術);
+      appendCell(tr, item.追加術1);
+      appendCell(tr, item.追加術2);
     }
-    appendCell(tr, item.result);
-    appendCell(tr, item.bp);
-    appendCell(tr, item.power);
-    appendCell(tr, item.effect);
-    appendCell(tr, item.species);
+    appendCell(tr, item.合成結果);
+    appendCell(tr, item.BP補正);
+    appendCell(tr, item.威力補正);
+    appendCell(tr, item.追加効果);
+    appendCell(tr, item.種族特攻);
     tbody.appendChild(tr);
   });
 
