@@ -7,8 +7,8 @@
 <body>
 
 <h1>*開発中*データ一覧</h1>
-<div id="status2"></div>
-<div id="status3"></div>
+<div id="status2">二術合成データリスト読み込み中</div>
+<div id="status3">三術合成データリスト読み込み中</div>
 <div class="search-block">
 
   <label>合成結果:</label>
@@ -95,9 +95,79 @@
     <option value="デスレイン">デスレイン</option>
   </select>
   <br>
-  <label>BP最小値:</label>
-  <input type="number" id="bpMinInput">
+  <label>BP倍率:</label>
+  <select id="bpmagSelect">
+    <option value="">指定しない</option>
+    <option value="-100">-100</option>
+    <option value="-80">-80</option>
+    <option value="-60">-60</option>
+    <option value="-40">-40</option>
+    <option value="-20">-20</option>
+    <option value="0">0</option>
+    <option value="20">20</option>
+    <option value="40">40</option>
+    <option value="60">60</option>
+    <option value="80">80</option>
+    <option value="100">100</option>  
+  </select>
+  <select id="bpmagcondSelect">
+    <option value="以下">以下</option>
+    <option value="以上">以上</option>
+  </select>
   <br>
+  <label>威力倍率:</label>
+  <select id="powmagSelect">
+    <option value="">指定しない</option>
+    <option value="100">100</option>
+    <option value="80">80</option>
+    <option value="60">60</option>
+    <option value="40">40</option>
+    <option value="20">20</option>
+    <option value="0">0</option>
+    <option value="-20">-20</option>
+    <option value="-40">-40</option>
+    <option value="-60">-60</option>
+    <option value="-80">-80</option>
+    <option value="-100">-100</option>  
+  </select>
+  <select id="powmagcondSelect">
+    <option value="以上">以上</option>
+    <option value="以下">以下</option>
+  </select>
+  <br>
+  <label>追加効果（二術合成用）:</label>
+  <select id="effect2Select">
+    <option value="">指定しない</option>
+    <option value="火STR">STRダウン（火）</option>
+    <option value="水AGI">AGIダウン（水）</option>
+    <option value="風DEX">DEXダウン（風）</option>
+    <option value="土WIL">WILダウン（土）</option>
+    <option value="幻CHA">CHAダウン（幻）</option>
+    <option value="魔INT">INTダウン（魔）</option>
+    <option value="光COM">COMダウン（光）</option>
+    <option value="闇AGI">AGIダウン（闇）</option>
+    <option value="邪COM">COMダウン（邪）</option>
+    <option value="AGI">AGIダウン（無区別）</option>
+    <option value="COM">COMダウン（無区別）</option>
+  </select>
+  <br>
+  <label>追加効果（三術合成用）:</label>
+  <select id="effect3Select">
+    <option value="">指定しない</option>
+    <option value="100">100</option>
+    <option value="80">80</option>
+    <option value="60">60</option>
+    <option value="40">40</option>
+    <option value="20">20</option>
+    <option value="0">0</option>
+    <option value="-20">-20</option>
+    <option value="-40">-40</option>
+    <option value="-60">-60</option>
+    <option value="-80">-80</option>
+    <option value="-100">-100</option>  
+  </select>
+  <br>
+  
   <button id="setConditionBtn2">2術合成検索</button>
   <button id="setConditionBtn3">3術合成検索</button>
 </div>
