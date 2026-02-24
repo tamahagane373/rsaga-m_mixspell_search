@@ -168,21 +168,6 @@ function filterData(data, type) {
   });
 }
 
-// 二術ボタン
-document.getElementById("setConditionBtn2")
-  .addEventListener("click", () => {
-    document.getElementById("result").innerHTML =
-      buildConditionText(2);
-  });
-
-
-// 三術ボタン
-document.getElementById("setConditionBtn3")
-  .addEventListener("click", () => {
-    document.getElementById("result").innerHTML =
-      buildConditionText(3);
-  });
-
 function displayAll(data) {
   const resultDiv = document.getElementById("result");
   resultDiv.innerHTML = "";
@@ -193,3 +178,32 @@ function displayAll(data) {
     resultDiv.appendChild(div);
   });
 }
+
+// 二術検索
+document.getElementById("setConditionBtn2")
+  .addEventListener("click", () => {
+
+    const filtered = filterData(data2, 2);
+
+    document.getElementById("result").innerHTML =
+      buildConditionText(2) +
+      "<hr>検索結果件数: " + filtered.length + "<br><br>";
+
+    displayAll(filtered);
+  });
+
+
+// 三術検索
+document.getElementById("setConditionBtn3")
+  .addEventListener("click", () => {
+
+    const filtered = filterData(data3, 3);
+
+    document.getElementById("result").innerHTML =
+      buildConditionText(3) +
+      "<hr>検索結果件数: " + filtered.length + "<br><br>";
+
+    displayAll(filtered);
+  });
+
+
